@@ -1,0 +1,13 @@
+---
+# tasks file for docker
+- name: Remove versoes anteriors
+  hosts: docker
+  tasks:
+    - apt: 
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - docker
+        - docker-engine
+        - docker.io
+

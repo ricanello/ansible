@@ -1,0 +1,27 @@
+---
+- name: Playbook de Teste
+  hosts: all
+  tasks: 
+    - name: Instala o Apache2 nas maquinas Ubuntu
+      apt: 
+        name: apache2
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Instala o Apache2 nas maquinas CentOS
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+
+    - name: Copia o index
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+    - name: Reinicia o servidor Web
+      service:
+        name: httpd
+        state: restarted
+      when: ansible_os_family == 'RedHat'

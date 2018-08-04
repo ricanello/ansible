@@ -1,0 +1,8 @@
+---
+- name: Playbook de Teste
+  hosts: all
+  tasks: 
+    - name: Instala um programa
+      package: 
+        name: htop
+        state: absent
